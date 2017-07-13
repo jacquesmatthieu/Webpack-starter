@@ -1,0 +1,13 @@
+
+{
+  "entry": {
+    "main": [
+      "styles/main.scss"
+    ]
+  },
+  "browsers": [
+    "last 2 versions",
+    "android 4",
+    "opera 12"
+  ]
+}
