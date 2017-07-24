@@ -1,3 +1,3 @@
-const css = require ('../style/main.scss');
+let css = require ('../style/main.scss');
 
-console.log('prout');
+console.log(css)
