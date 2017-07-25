@@ -17,28 +17,12 @@ module.exports = {
 
     module: {
         rules: [
-
             {
-                enforce: 'pre',
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'eslint-loader',
-                options: {
-                  emitError: true,
-                  failOnError: true
-                },
-                query: {
-                   configFile: '.eslintrc.js'
-                },
-                include: root
-            }, {
-                // test: /\.js$/,
-                // exclude: /(node_modules|bower_components)/,
-                // use: ['babel-loader'],
-                // include: root
-            },
-
-            {
+                include: root,
+                loader: 'eslint'
+            },{
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
@@ -57,15 +41,5 @@ module.exports = {
 
     plugins: [
         new ExtractTextPlugin({filename: '../css/main.css', disable: false, allChunks: true}),
-        new webpack.LoaderOptionsPlugin({
-        test: /\.js$/,
-        options: {
-            emitError: true,
-            failOnError: true,
-            eslint: {
-              configFile: '.eslintrc.json'
-            }
-        }
-      })
     ]
 }
