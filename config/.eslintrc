@@ -1,7 +1,7 @@
 #last review done for eslint 3.18.0
 # 0: off / 1: warn / 2: error
 
-extends: 'eslint:recommended' #enable recommended rules (hich have a check mark)
+extends: 'webpack' #enable recommended rules (hich have a check mark)
 parser: babel-eslint
 
 env:

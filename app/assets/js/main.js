@@ -1,3 +1,1 @@
-let css = require ('../style/main.scss');
-
-console.log(css)
+let css = require ('../style/main.scss')

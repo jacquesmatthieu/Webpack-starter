@@ -1,11 +1,14 @@
 const   path = require('path'),
         root = path.resolve(__dirname),
-        ExtractTextPlugin = require("extract-text-webpack-plugin")
+        ExtractTextPlugin = require("extract-text-webpack-plugin"),
+        webpack = require('webpack')
 
 module.exports = {
     entry: {
         app: ['../app/assets/js/main.js']
     },
+
+    devtool: 'source-map',
 
     output: {
         path: path.resolve(__dirname, '../dist/assets/js'),
@@ -19,13 +22,20 @@ module.exports = {
                 enforce: 'pre',
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: "eslint-loader",
+                loader: 'eslint-loader',
+                options: {
+                  emitError: true,
+                  failOnError: true
+                },
+                query: {
+                   configFile: '.eslintrc.js'
+                },
                 include: root
             }, {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: ['babel-loader'],
-                include: root
+                // test: /\.js$/,
+                // exclude: /(node_modules|bower_components)/,
+                // use: ['babel-loader'],
+                // include: root
             },
 
             {
@@ -45,5 +55,17 @@ module.exports = {
         stats: {chunks: false}
     },
 
-    plugins: [new ExtractTextPlugin({filename: '../css/main.css', disable: false, allChunks: true})]
+    plugins: [
+        new ExtractTextPlugin({filename: '../css/main.css', disable: false, allChunks: true}),
+        new webpack.LoaderOptionsPlugin({
+        test: /\.js$/,
+        options: {
+            emitError: true,
+            failOnError: true,
+            eslint: {
+              configFile: '.eslintrc.json'
+            }
+        }
+      })
+    ]
 }
