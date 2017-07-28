@@ -1,7 +1,7 @@
 #last review done for eslint 3.18.0
 # 0: off / 1: warn / 2: error
 
-extends: 'webpack' #enable recommended rules (hich have a check mark)
+extends: 'eslint:recommended' #enable recommended rules (hich have a check mark)
 parser: babel-eslint
 
 env:
@@ -27,7 +27,7 @@ rules:
   no-console: 0 #disallow use of console
 
 #Stylistic Issues
-  indent: [2, 4] #enforce consistent indentation
+  indent: [0, 4] #enforce consistent indentation
   no-trailing-spaces: 1 #disallow trailing whitespace at the end of lines
   array-bracket-spacing: 2 #enforce consistent spacing inside array brackets
   brace-style: 2 #enforce consistent brace style for blocks

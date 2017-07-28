@@ -1,0 +1,11 @@
+{
+    "extends":         "stylelint-config-standard",
+    "plugins":         ["stylelint-scss"],
+    "defaultSeverity": "error",
+    "rules":           {
+        "number-leading-zero":             null,
+        "indentation":                     null,
+        "declaration-colon-newline-after": null,
+        "declaration-empty-line-before":   "never"
+    },
+}
