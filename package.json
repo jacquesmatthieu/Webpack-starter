@@ -21,6 +21,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/matthieujacques/magic-mirror-refonte#readme",
   "dependencies": {
+    "copy-webpack-plugin": "^4.0.1",
     "csslint-loader": "^1.0.0",
     "express": "^4.15.2",
     "moment": "^2.18.1",

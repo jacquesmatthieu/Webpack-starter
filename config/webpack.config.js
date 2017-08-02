@@ -1,20 +1,30 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const TextPlugin = new ExtractTextPlugin({
   filename: '../css/main.css',
   disable: false,
-  allChunks: true}
-);
+  allChunks: true
+});
 
 const StyleLint = new StyleLintPlugin({
   configFile: '.stylelintrc',
   quiet: true, // Use webpack performances hints entry instead
   syntax: 'scss',
   failOnError: false,
-  emitErrors: false
+  emitErrors: false,
+  context: path.resolve(__dirname, '../app/assets/styles/')
 });
+
+const CopyPlugin = new CopyWebpackPlugin([
+  {
+    context: '../app/assets/images',
+    from: '**/*',
+    to: '../images'
+  }
+]);
 
 module.exports = {
   entry: {
@@ -51,10 +61,6 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.jpe?g$|\.svg$|\.png$/i,
-        use: 'file-loader?name=[name].[ext]'
-      },
-      {
         test: /\.eot|ttf|woff|woff2$/,
         use: 'file-loader?name=[name].[ext]'
       },
@@ -79,5 +85,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [TextPlugin, StyleLint]
+  plugins: [TextPlugin, StyleLint, CopyPlugin]
 };
