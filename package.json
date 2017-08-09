@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "developement": "cd ./config && webpack --progress --colors --watch",
+    "start": "cd ./config && webpack --progress --colors --watch",
     "production": "cd ./config && webpack -p"
   },
   "repository": {
@@ -27,7 +27,8 @@
     "moment": "^2.18.1",
     "request": "^2.81.0",
     "sasslint-loader": "0.0.1",
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",

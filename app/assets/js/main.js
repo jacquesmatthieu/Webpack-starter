@@ -9,36 +9,24 @@
  * The routing is enclosed within an anonymous function so that you can
  * always reference jQuery with $, even when in .noConflict() mode.
  * ======================================================================== */
-let css = require('../style/main.scss');
-// import Nav from './modules/nav';
-// import Cookies from './modules/cookie';
-console.log(css);
 
-const WebpackStarter = {
+//IMPORT Nav from './modules/nav';
+const $ = require('jquery');
+
+const Qlikbeton = {
   // All pages
   common: {
     init() {
-      // JavaScript to be fired on all pages
-      // Nav.init();
-      Cookies.init();
-    },
-    finalize() {
       console.log('prout');
-    }
-  },
-  // Home page
-  home: {
-    init() {
-      // JavaScript to be fired on the home page
     },
     finalize() {
       // JavaScript to be fired on the home page, after the init JS
     }
   },
   // Home page
-  toto: {
+  home: {
     init() {
-      // JavaScript to be fired on the home page
+      console.log('prout');
     },
     finalize() {
       // JavaScript to be fired on the home page, after the init JS
@@ -49,7 +37,7 @@ const WebpackStarter = {
 const UTIL = {
   fire(func, funcname, args) {
     let fire;
-    const namespace = WebpackStarter;
+    const namespace = Qlikbeton;
     funcname = (funcname === undefined)
       ? 'init'
       : funcname;
@@ -67,6 +55,15 @@ const UTIL = {
 
     // Fire common finalize JS
     UTIL.fire('common', 'finalize');
+
+    // Fire page-specific init JS, and then finalize JS
+    $.each(document.body.className.replace(/-/g, '_').split(/\s+/),
+    /*eslint-disable */
+      function(i, classnm) {
+        UTIL.fire(classnm);
+        UTIL.fire(classnm, 'finalize');
+      });
+    /*eslint-enable */
   }
 };
 
